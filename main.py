@@ -12,23 +12,23 @@
 states = [{}, {}, {}, {}]
 
 # states[estado actual][simbolo que lee] = (simbolo que escribe, direccion en que se mueve en la cinta, estado nuevo) 
-states[0]['X'] = ('X', +1, 0)
+states[0]['Y'] = ('Y', +1, 0)
 states[0]['0'] = ('X', +1, 1)
 states[0]['1'] = ('X', +1, 2)
 states[0]['B'] = ('B', -1, 4)
-states[1]['X'] = ('X', +1, 1)
+states[1]['Y'] = ('Y', +1, 1)
 states[1]['0'] = ('0', +1, 1)
-states[1]['1'] = ('X', -1, 3)
-states[2]['X'] = ('X', +1, 2)
+states[1]['1'] = ('Y', -1, 3)
+states[2]['Y'] = ('Y', +1, 2)
 states[2]['1'] = ('1', +1, 2)
-states[2]['0'] = ('X', -1, 3)
-states[3]['X'] = ('X', -1, 3)
+states[2]['0'] = ('Y', -1, 3)
+states[3]['Y'] = ('Y', -1, 3)
 states[3]['0'] = ('0', -1, 3)
 states[3]['1'] = ('1', -1, 3)
-states[3]['B'] = ('B', +1, 0)
+states[3]['X'] = ('X', +1, 0)
 
-tape = ['B','1', '1', '0', '1', '1', '0', '0', 'B'] # cinta (se agrega B al principio para simular lista circular)
-head = 1                                    # posicion de la cabeza
+tape = ['1', '1', '0', '1', '1', '0', '0', '0', 'B'] # cinta 
+head = 0                                    # posicion de la cabeza
 state = 0                                   # estado actual
 print(tape)
 while state != 4:                           # mientras que no este en el estado de aceptacion
