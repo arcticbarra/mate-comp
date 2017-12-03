@@ -19,10 +19,12 @@ states[0]['B'] = ('B', -1, 4)
 states[1]['Y'] = ('Y', +1, 1)
 states[1]['0'] = ('0', +1, 1)
 states[1]['1'] = ('Y', -1, 3)
+states[1]['B'] = ('B', -1, 5)
 
 states[2]['Y'] = ('Y', +1, 2)
 states[2]['1'] = ('1', +1, 2)
 states[2]['0'] = ('Y', -1, 3)
+states[2]['B'] = ('B', -1, 5)
 
 states[3]['Y'] = ('Y', -1, 3)
 states[3]['0'] = ('0', -1, 3)
@@ -41,16 +43,11 @@ for i in range(len(tape) - 1):
     assert tape[i] in ['0', '1']
 
 steps = 0
-while state != 4:              # mientras que no este en el estado de aceptacion
+while state != 4 and state != 5:              # mientras que no este en el estado de aceptacion
     steps += 1
     symbol = tape[head]        # lee el simbolo
 
-    print(f'{state}. State {state}')
-    if symbol not in states[state]:
-        print(' '.join(tape))
-        print(' ' * (head * 2) + '^')  # imprime paso
-        print("Rejected")
-        break
+    print(f'{steps}. State {state}')
     symbol, direction, state = states[state][symbol]  # obtiene la instruccion
     # escribe el nuevo simbolo en la cinta
     tape[head] = symbol
@@ -60,4 +57,7 @@ while state != 4:              # mientras que no este en el estado de aceptacion
 
 if state == 4:
     print("Accepted")
-    print(steps, 'steps')
+elif state == 5:
+    print("Rejected")
+
+print(steps, 'steps')
